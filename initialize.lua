@@ -1,6 +1,6 @@
 --[[
 Initializes internal variables.
-You probably do not want to modify this.
+You probably do not want to modify this!
 --]]
 
 -- Get and store the resolution of the main window.
