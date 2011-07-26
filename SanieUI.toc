@@ -1,0 +1,36 @@
+## Interface: 40100
+## Author: Sanie
+## Title: SanieUI
+## Version: 0.1
+## Notes: A 4.0 Layout compilation
+## RequiredDeps: oUF
+
+config.lua
+initialize.lua
+
+borders\frames.lua
+
+modules\minimap.lua
+
+unitframes\init.lua
+unitframes\player.lua
+unitframes\target.lua
+unitframes\pet.lua
+unitframes\focus.lua
+unitframes\tot.lua 
+
+castbars\init.lua
+
+datatext\fishing.lua
+datatext\zonetext.lua
+datatext\moneytext.lua
+datatext\fps.lua
+datatext\time.lua
+datatext\bagspace.lua
+datatext\coords.lua
+datatext\durability.lua
+
+misc\vendor.lua
+misc\mount.lua
+
+slash.lua
