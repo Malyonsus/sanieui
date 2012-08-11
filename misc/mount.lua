@@ -15,6 +15,7 @@ local scalingStrings = {
 	"celestial steed",
 	"invincible",
 	"headless horseman's mount",
+	"tyrael's charger",
 }
 
 local flyingStrings = {

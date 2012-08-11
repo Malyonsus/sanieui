@@ -204,7 +204,7 @@ local textValues = function(frame, event, ...)
 	
 		if catchPercent > 100 then catchPercent = 100 end
 	
-		text = format("Fishing: %d(%d+%d), %.2f%%", skill, skillRank, skillModifier, catchPercent)
+		text = format("Fishing: %d+%d(%d), %.2f%%", skillRank, skillModifier, skill, catchPercent)
 	else
 		text = "Fishing: No Fishing Skill"
 	end
