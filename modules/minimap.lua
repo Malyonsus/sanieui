@@ -27,7 +27,7 @@ GameTimeFrame:Hide()
 MiniMapMailFrame:Hide()
 MiniMapMailIcon:Hide()
 MiniMapMailBorder:Hide()
-MiniMapBattlefieldFrame:Hide()
+--MiniMapBattlefieldFrame:Hide() No longer exists?
 MiniMapWorldMapButton:Hide()
 MinimapZoneTextButton:Hide()
 

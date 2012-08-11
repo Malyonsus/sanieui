@@ -22,7 +22,6 @@ local slots = {
 	"Trinket1Slot",
 	"MainHandSlot",
 	"SecondaryHandSlot",
-	"RangedSlot",
 }
 --[[---------------------------
 Datatext Constants

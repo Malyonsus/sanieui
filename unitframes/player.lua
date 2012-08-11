@@ -179,7 +179,7 @@ local function CreatePlayerStyle(self, isSingle)
 	backdrop(self)
 	createHealthBar(self)
 	if(class == "PALADIN") then
-		createSpecialPowerBar(self)
+--		createSpecialPowerBar(self)
 	end
 	createPowerBar(self)
 	createPvpIcon(self)
