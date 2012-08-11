@@ -56,6 +56,15 @@ SanieUI.lib.classColor = function(unit)
 	end
 end
 
+SanieUI.lib.buffCount = function()
+	local count = 0;
+	for i = 1,40 do
+		local n = UnitBuff("player", i);
+		if n then count = count + 1 end
+	end
+	return count;
+end
+
 SanieUI.lib.colorToTextCode = function(r, g, b, a)
 
 	a = a or 1

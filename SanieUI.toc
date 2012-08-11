@@ -1,8 +1,8 @@
-## Interface: 40100
+## Interface: 40200
 ## Author: Sanie
 ## Title: SanieUI
 ## Version: 0.1
-## Notes: A 4.0 Layout compilation
+## Notes: A 4.2 Layout compilation
 ## RequiredDeps: oUF
 
 config.lua
@@ -29,8 +29,10 @@ datatext\time.lua
 datatext\bagspace.lua
 datatext\coords.lua
 datatext\durability.lua
+datatext\stattext.lua
 
 misc\vendor.lua
 misc\mount.lua
+misc\fishing.lua
 
 slash.lua
