@@ -103,6 +103,15 @@ local zoneSkill = {
 	["Twilight Highlands"] = 650,
 	["Uldum"] = 650,
 	["Tol Barad"] = 675,
+	-- MOP
+	["Dread Wastes"] = 625,
+	["The Jade Forest"] = 650,
+	["Krasarang Wilds"] = 700,
+	["Valley of the Four Winds"] = 700,
+	["Townlong Steppes"] = 725,
+	["Kun-Lai Summit"] = 750,
+	["The Veiled Stair"] = 750,
+	["Vale of Eternal Blossoms"] = 825,
 }	
 
 local subzoneSkill = {
@@ -134,6 +143,9 @@ local subzoneSkill = {
 	["Lake Ere'Noru"] = 500,
 	["Lake Jorune"] = 500,
 	["Silmyr Lake"] = 500,
+	-- MOP
+	["Widow's Wall"] = 625,
+	["Sha-Touched"] = 625,
 }
 
 local catchesPerGain = {

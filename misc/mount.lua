@@ -105,6 +105,10 @@ local getMountType = function()
 		return "running"
 	end
 	
+	if(zone == "Darkmoon Island") then
+		return "running"
+	end
+	
 	if((zone == "Abyssal Depths" or zone == "Shimmering Expanse" or zone == "Kelp'thar Forest" or zone == "Damplight Chamber" or zone == "Ruins of Vashj'ir") and IsSwimming()) then
 		-- Vashj'ir case
 		return "swimming"
@@ -121,9 +125,15 @@ SanieUI["mount"] = {
 	["RandomMount"] = function(mountType)
 		local mountReal = GetNumCompanions("MOUNT")
 		local mountScanned = #SanieUI.mount.scaling + #SanieUI.mount.flying + #SanieUI.mount.swimming + #SanieUI.mount.qiraji + #SanieUI.mount.running
-		if mountReal ~= mountScanned then
+		
+		--[[
+		Something weird is going on and the tables are being loaded at one point (perhaps on zone load?)
+		And then re-enumerating later. So we need to run load mounts every time.
+		Or, hooked into an event based on some mount table event.
+		--]]
+		--if mountReal ~= mountScanned then
 			loadMounts()
-		end
+		--end
 		--set mount type if it is nil.
 		mountType = mountType or getMountType()
 		local mountTable = SanieUI.mount[mountType]
@@ -135,6 +145,15 @@ SanieUI["mount"] = {
 		numScale = #scaleTable
 		numChosen = #mountTable
 		
+		--[[
+		print("Mount type is:", mountType)
+		print("Mount table is:")
+		
+		for i,v in ipairs(mountTable) do
+			local _, name = GetCompanionInfo("MOUNT", v)
+			print(i,name) 
+		end
+		--]]
 		
 		if(mountType ~= "swimming") then
 			numTotal = numScale + numChosen
@@ -166,4 +185,16 @@ SanieUI["mount"] = {
 	end,
 }
 
+local debugPrint = function(frame, event, ...)
+	print(frame, event, ...)
+end
+
 loadMounts()
+
+
+-- Some debug mount testing
+--local eventFrame = CreateFrame("Frame")
+--eventFrame:RegisterEvent("COMPANION_LEARNED")
+--eventFrame:RegisterEvent("COMPANION_UNLEARNED")
+--eventFrame:RegisterEvent("COMPANION_UPDATE")
+--SanieUI.lib.SetOrHookScript(eventFrame, "OnEvent", debugPrint)
