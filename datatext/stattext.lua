@@ -8,7 +8,7 @@ Datatext Constants
 -- Set name
 local name = "StatText"
 -- Set update frequency in seconds. Set to nil for event-only updating.
-local updateFrequency = nil
+local updateFrequency = 1
 -- Font
 local font = SanieUI.font
 -- Font size
