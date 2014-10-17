@@ -61,9 +61,30 @@ local loadMounts = function()
 	SanieUI.mount.swimming = {}
 	SanieUI.mount.running = {}
 	SanieUI.mount.qiraji = {}
+	
+	local numMounts = C_MountJournal.GetNumMounts()
+	local count = 0
+	for i=1,numMounts do
+		local name, id, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = C_MountJournal.GetMountInfo( i )
+		if isCollected and not hideOnChar then
+			-- This is all the mounts that we can cast
+			local creatureDisplayId, descriptionText, sourceText, isSelfMount, mountType = C_MountJournal.GetMountInfoExtra( i )
+			if mountType == 230 then
+				SanieUI.mount.running[#SanieUI.mount.running + 1] = i
+			elseif mountType == 248 or mountType == 247 then
+				SanieUI.mount.scaling[#SanieUI.mount.scaling + 1] = i
+			elseif mountType == 232 then
+				SanieUI.mount.swimming[#SanieUI.mount.swimming + 1] = i
+			elseif mountType == 241 then
+				SanieUI.mount.qiraji[#SanieUI.mount.qiraji + 1] = i
+			end
+		end
+	end
+	--[[
 	local numMounts = GetNumCompanions("MOUNT")
 	for i=1,numMounts do
-		local _, name = GetCompanionInfo("MOUNT", i)
+		local id, name, spell, icon,active,flags = GetCompanionInfo("mount", i)
+		print( id, name, spell, icon, active, flags)
 		if(isMatch(name, scalingStrings)) then
 			SanieUI.mount.scaling[#SanieUI.mount.scaling + 1] = i
 		elseif(isMatch(name, flyingStrings)) then
@@ -76,6 +97,7 @@ local loadMounts = function()
 			SanieUI.mount.running[#SanieUI.mount.running + 1] = i
 		end
 	end
+	--]]
 	--[[
 	print("Size of scaling table is", #SanieUI.mount.scaling)
 	print("Size of flying table is", #SanieUI.mount.flying)
@@ -168,11 +190,11 @@ SanieUI["mount"] = {
 		choice = math.random(numTotal)
 		if(choice <= numChosen) then
 			if IsOutdoors() then
-				CallCompanion("MOUNT", mountTable[choice])
+				C_MountJournal.Summon(mountTable[choice])
 			end
 		else
 			if IsOutdoors() then
-				CallCompanion("MOUNT", scaleTable[choice - numChosen])
+				C_MountJournal.Summon(scaleTable[choice - numChosen])
 			end
 		end
 	end,
