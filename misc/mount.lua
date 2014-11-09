@@ -1,4 +1,14 @@
 --[[
+6.0.2
+In Draenor, Blizzard revamped the companions and mount functions.
+In the case of mounts, they introduced the C_MountJournal table, where
+all mount functions are placed. Confusingly, they left in a number of the old
+mount functions, and these just do nothing.
+
+This file defines a 'mount' table under SanieUI with three functions:
+RandomMount( mountType ) - takes a string "flying", "running", "swimming"
+
+4.0.3
 Figuring out what kind of mount each mount is is kind of an
 interesting problem. As of 4.0.3 beta, blizzard provides no
 API call to tell whether a mount is land or flying, though
@@ -72,7 +82,7 @@ local loadMounts = function()
 			if mountType == 230 then
 				SanieUI.mount.running[#SanieUI.mount.running + 1] = i
 			elseif mountType == 248 or mountType == 247 then
-				SanieUI.mount.scaling[#SanieUI.mount.scaling + 1] = i
+				SanieUI.mount.flying[#SanieUI.mount.flying + 1] = i
 			elseif mountType == 232 then
 				SanieUI.mount.swimming[#SanieUI.mount.swimming + 1] = i
 			elseif mountType == 241 then
