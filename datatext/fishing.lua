@@ -148,6 +148,20 @@ local subzoneSkill = {
 	["Sha-Touched"] = 625,
 }
 
+local draenorZones = {
+	"Frostwall",
+	"Town Hall",
+	"Frostfire Ridge",
+	"Ashran",
+	"Gorgrond",
+	"Nagrand",
+	"Shadowmoon Valley",
+	"Spires of Arak",
+	"Talador",
+	"Tanaan Jungle",
+	"Warspear"
+}
+
 local catchesPerGain = {
 	[1] = 1,
 	[115] = 2,
@@ -173,6 +187,28 @@ local catchChance = function(mySkill,reqSkill)
 	return ratio * ratio
 end
 
+local inDraenor = function( )
+	local zone = GetRealZoneText()
+	for _, v in ipairs( draenorZones ) do
+		if zone == v then
+			return true
+		end
+	end
+	
+	return false
+	
+end
+
+local draenorCatchRates = {
+	[0  ] = {100,  0,  0},
+	[100] = {100,  0,  0},
+	[300] = { 81, 19,  0},
+	[525] = { 81, 19,  0},
+	[650] = { 33, 66,  0},
+	[700] = {  0, 50, 50},
+	[950] = {  0,  0,100},
+}
+
 --[[---------------------------
 Datatext Constants
 --]]----------------------------
@@ -192,31 +228,68 @@ Datatext functions
 -- You can also always use the |cAARRGGBBText|r format inline, too
 local textValues = function(frame, event, ...)
 
-
 	local fishingIndex = (select(4, GetProfessions()))
 
 	local skillName, skillRank, skillMaxRank, skillModifier
 
 	local text
 	
-	if(fishingIndex) then
+	if( fishingIndex ) then
 		skillName, _, skillRank, skillMaxRank, _, _, _, skillModifier = GetProfessionInfo(fishingIndex)
 
-
 		local zone, subzone = GetRealZoneText(), GetSubZoneText()
-	
+		
 		skill = subzoneSkill[subzone] or zoneSkill[zone] or -1
 	
 		if skill == -1 then
 		--print("No skill level found for "..(zone or "nil").." - "..(subzone or "nil"))
 			skill = 1 -- sanity catch.
 		end
+
+		local effectiveSkill = skillRank + skillModifier
+		
+		if( inDraenor() ) then
+			-- Draenor fishing works differently
+			local rates = {97,0,0,0}
+			if( draenorCatchRates[effectiveSkill] ) then
+				rates = draenorCatchRates[effectiveSkill]
+			else
+				-- Interpolate
+				local lowSkill = 0
+				local highSkill = 1000
+				for k,v in pairs( draenorCatchRates ) do
+					if( k > effectiveSkill and k - effectiveSkill < highSkill - effectiveSkill ) then
+						highSkill = k
+					elseif( k < effectiveSkill and effectiveSkill - k < effectiveSkill - lowSkill ) then
+						lowSkill = k
+					end
+				end
+				
+				local lowRates = draenorCatchRates[lowSkill]
+				local highRates = draenorCatchRates[highSkill]
+				
+				-- We're x% of the way to highSkill
+				local ratio = (effectiveSkill - lowSkill) / (highSkill - lowSkill)
+				local smallRate = lowRates[1] + (highRates[1] - lowRates[1]) * ratio
+				local mediumRate = lowRates[2] + (highRates[2] - lowRates[2]) * ratio
+				local largeRate = lowRates[3] + (highRates[3] - lowRates[3]) * ratio
+				print( effectiveSkill, lowSkill, highSkill, smallRate, mediumRate, largeRate )
+				
+				text = format("Fishing: %d+%d S: %.2f%%  M: %.2f%%  E: %.2f%%", skillRank, skillModifier, smallRate, mediumRate, largeRate )
+				
+			end
+			
+			--if zone == "Frostwall" then
+				-- Restrict fish size based on garrison level
+			
+			
+		else 
+			local catchPercent = 100 * catchChance(skillRank + skillModifier, skill)
 	
-		local catchPercent = 100 * catchChance(skillRank + skillModifier, skill)
+			if catchPercent > 100 then catchPercent = 100 end
 	
-		if catchPercent > 100 then catchPercent = 100 end
-	
-		text = format("Fishing: %d+%d(%d), %.2f%%", skillRank, skillModifier, skill, catchPercent)
+			text = format("Fishing: %d+%d(%d), %.2f%%", skillRank, skillModifier, skill, catchPercent)
+		end
 	else
 		text = "Fishing: No Fishing Skill"
 	end
@@ -247,8 +320,6 @@ local anchors = {
 			y = -3,
     	  },
 }
-
-
 
 --[[
 If I've done my job right, nothing below here needs to be edited.
