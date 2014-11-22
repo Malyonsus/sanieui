@@ -69,6 +69,11 @@ classFunctions.PRIEST = function()
 	local spellpower = GetSpellBonusDamage(6)
 	return "SP: "..spellpower
 end
+
+classFunctions.MAGE = function()
+	local spellpower = GetSpellBonusDamage(6)
+	return "SP: "..spellpower
+end
 	
 	
 --[[----------------------------
