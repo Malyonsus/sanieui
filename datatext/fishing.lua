@@ -273,7 +273,7 @@ local textValues = function(frame, event, ...)
 				local smallRate = lowRates[1] + (highRates[1] - lowRates[1]) * ratio
 				local mediumRate = lowRates[2] + (highRates[2] - lowRates[2]) * ratio
 				local largeRate = lowRates[3] + (highRates[3] - lowRates[3]) * ratio
-				print( effectiveSkill, lowSkill, highSkill, smallRate, mediumRate, largeRate )
+				--print( effectiveSkill, lowSkill, highSkill, smallRate, mediumRate, largeRate )
 				
 				text = format("Fishing: %d+%d S: %.2f%%  M: %.2f%%  E: %.2f%%", skillRank, skillModifier, smallRate, mediumRate, largeRate )
 				
