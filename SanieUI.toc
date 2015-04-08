@@ -1,8 +1,8 @@
-## Interface: 60000
+## Interface: 60100
 ## Author: Sanie
 ## Title: SanieUI
-## Version: 6.0-beta
-## Notes: A 6.2 Layout compilation
+## Version: 6.1-blackhand
+## Notes: A 6.1 Layout compilation
 ## RequiredDeps: oUF
 
 config.lua
