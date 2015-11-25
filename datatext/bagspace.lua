@@ -26,11 +26,11 @@ local textValues = function(frame, event, ...)
 		totalSlots = totalSlots + GetContainerNumSlots(bagId)
 		emptySlots = emptySlots + GetContainerNumFreeSlots(bagId)
 	end
-	
+
 	local ratio = emptySlots / totalSlots
-	
+
 	local colorCode
-	
+
 	if ratio < .1 then
 		colorCode = lib.colorToTextCode(lib.questDifficultyColor("impossible"))
 	elseif ratio < .25 then
@@ -42,7 +42,7 @@ local textValues = function(frame, event, ...)
 	else
 		colorCode = lib.colorToTextCode(lib.questDifficultyColor("trivial"))
 	end
-	
+
 	return colorCode..emptySlots.."|r/"..totalSlots
 end
 
@@ -59,12 +59,13 @@ local events = {
 Datatext anchors
 --]]----------------------------
 local anchors = {
-	[1] = { anchor = "TOPRIGHT",
-			relative = "TimeFrame",
-			relativeAnchor = "TOPLEFT",
-			x = -10,
-			y = 0,
-    	  },
+	[1] = {
+		anchor = "TOPRIGHT",
+		relative = "TimeFrame",
+		relativeAnchor = "TOPLEFT",
+		x = -10,
+		y = 0,
+	},
 }
 
 
@@ -84,21 +85,21 @@ text:SetFont(font, textSize)
 local update = function(self, event, ...)
 
 	local textString, r, g, b, a = textValues(self, event, ...)
-	
+
 	text:SetText(textString)
-	
-	if r and g and b and a then 
+
+	if r and g and b and a then
 		text:SetTextColor(r, g, b, a)
 	else
 		text:SetTextColor(1,1,1,1)
 	end
-	
+
 	self:SetAllPoints(text)
 end
 
 local heartbeat = function(self, elapsed)
 	self.timeElapsed = self.timeElapsed + elapsed
-	
+
 	if self.timeElapsed >= updateFrequency then
 		update(self, "OnUpdate")
 		self.timeElapsed = 0
