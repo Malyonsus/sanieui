@@ -71,14 +71,14 @@ local loadMounts = function()
 	SanieUI.mount.swimming = {}
 	SanieUI.mount.running = {}
 	SanieUI.mount.qiraji = {}
-	
+
 	local numMounts = C_MountJournal.GetNumMounts()
 	local count = 0
 	for i=1,numMounts do
-		local name, id, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = C_MountJournal.GetMountInfo( i )
+		local name, id, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = C_MountJournal.GetMountInfoByID( i )
 		if isCollected and not hideOnChar then
 			-- This is all the mounts that we can cast
-			local creatureDisplayId, descriptionText, sourceText, isSelfMount, mountType = C_MountJournal.GetMountInfoExtra( i )
+			local creatureDisplayId, descriptionText, sourceText, isSelfMount, mountType = C_MountJournal.GetMountInfoExtraByID( i )
 			if mountType == 230 then
 				SanieUI.mount.running[#SanieUI.mount.running + 1] = i
 			elseif mountType == 248 or mountType == 247 then
@@ -128,24 +128,24 @@ local getMountType = function()
 		-- Special wintergrasp case
 		return "running"
 	end
-	
+
 	if(zone == "Throne of the Four Winds") then
 		return "running"
 	end
-	
+
 	if(subzone == "Nespirah") then
 		return "running"
 	end
-	
+
 	if(zone == "Darkmoon Island") then
 		return "running"
 	end
-	
+
 	if((zone == "Abyssal Depths" or zone == "Shimmering Expanse" or zone == "Kelp'thar Forest" or zone == "Damplight Chamber" or zone == "Ruins of Vashj'ir") and IsSwimming()) then
 		-- Vashj'ir case
 		return "swimming"
 	end
-	
+
 	if(canFly) then
 		return "flying"
 	else
@@ -157,7 +157,7 @@ SanieUI["mount"] = {
 	["RandomMount"] = function(mountType)
 		local mountReal = GetNumCompanions("MOUNT")
 		local mountScanned = #SanieUI.mount.scaling + #SanieUI.mount.flying + #SanieUI.mount.swimming + #SanieUI.mount.qiraji + #SanieUI.mount.running
-		
+
 		--[[
 		Something weird is going on and the tables are being loaded at one point (perhaps on zone load?)
 		And then re-enumerating later. So we need to run load mounts every time.
@@ -176,23 +176,23 @@ SanieUI["mount"] = {
 		end
 		numScale = #scaleTable
 		numChosen = #mountTable
-		
+
 		--[[
 		print("Mount type is:", mountType)
 		print("Mount table is:")
-		
+
 		for i,v in ipairs(mountTable) do
 			local _, name = GetCompanionInfo("MOUNT", v)
-			print(i,name) 
+			print(i,name)
 		end
 		--]]
-		
+
 		if(mountType ~= "swimming") then
 			numTotal = numScale + numChosen
 		else
 			numTotal = numChosen
 		end
-		
+
 		if numTotal == 0 then
 			print("No mounts found for type:", mountType)
 			return
@@ -200,11 +200,11 @@ SanieUI["mount"] = {
 		choice = math.random(numTotal)
 		if(choice <= numChosen) then
 			if IsOutdoors() then
-				C_MountJournal.Summon(mountTable[choice])
+				C_MountJournal.SummonByID(mountTable[choice])
 			end
 		else
 			if IsOutdoors() then
-				C_MountJournal.Summon(scaleTable[choice - numChosen])
+				C_MountJournal.SummonByID(scaleTable[choice - numChosen])
 			end
 		end
 	end,
