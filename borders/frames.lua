@@ -14,7 +14,7 @@ leftEdge:SetPoint("BOTTOMLEFT", "UIParent", "BOTTOMLEFT", edgeWidth, edgeWidth)
 
 leftEdge.texture = leftEdge:CreateTexture()
 leftEdge.texture:SetAllPoints(leftEdge)
-leftEdge.texture:SetTexture(r,g,b)
+leftEdge.texture:SetColorTexture(r,g,b)
 
 -- Right Edge
 local rightEdge = CreateFrame("Frame", "rightEdge", UIParent)
@@ -26,7 +26,7 @@ rightEdge:SetPoint("BOTTOMRIGHT", "UIParent", "BOTTOMRIGHT", -edgeWidth, edgeWid
 
 rightEdge.texture = rightEdge:CreateTexture()
 rightEdge.texture:SetAllPoints(rightEdge)
-rightEdge.texture:SetTexture(r,g,b)
+rightEdge.texture:SetColorTexture(r,g,b)
 
 -- Bottom Edge
 local bottomEdge = CreateFrame("Frame", "bottomEdge", UIParent)
@@ -38,7 +38,7 @@ bottomEdge:SetPoint("BOTTOMRIGHT", "UIParent", "BOTTOMRIGHT", -edgeWidth, -edgeW
 
 bottomEdge.texture = bottomEdge:CreateTexture()
 bottomEdge.texture:SetAllPoints(bottomEdge)
-bottomEdge.texture:SetTexture(r,g,b)
+bottomEdge.texture:SetColorTexture(r,g,b)
 
 -- Top Left Gradient
 local topLeftGradient = CreateFrame("Frame", "topLeftGradient", UIParent)
@@ -49,7 +49,7 @@ topLeftGradient:SetPoint("TOPRIGHT", "UIParent", "TOPLEFT", width/3, -edgeWidth)
 
 topLeftGradient.texture = topLeftGradient:CreateTexture()
 topLeftGradient.texture:SetAllPoints(topLeftGradient)
-topLeftGradient.texture:SetTexture(r,g,b)
+topLeftGradient.texture:SetColorTexture(r,g,b)
 topLeftGradient.texture:SetGradientAlpha("HORIZONTAL", 1,1,1,1,1,1,1,0)
 
 -- Top Right Gradient
@@ -61,7 +61,7 @@ topRightGradient:SetPoint("TOPLEFT", "UIParent", "TOPRIGHT", -width/3, -edgeWidt
 
 topRightGradient.texture = topLeftGradient:CreateTexture()
 topRightGradient.texture:SetAllPoints(topRightGradient)
-topRightGradient.texture:SetTexture(r,g,b)
-topRightGradient.texture:SetGradientAlpha("HORIZONTAL", 1,1,1,0,1,1,1,1) 
+topRightGradient.texture:SetColorTexture(r,g,b)
+topRightGradient.texture:SetGradientAlpha("HORIZONTAL", 1,1,1,0,1,1,1,1)
 
 print("Loaded!")
