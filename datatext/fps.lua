@@ -19,7 +19,8 @@ Datatext functions
 --]]----------------------------
 -- This function returns the text value and r, g, b, a. If any of r,g,b,a are nil, will use solid white.
 local textValues = function(frame, event, ...)
-	return format("%.1f", GetFramerate())
+	local down, up, lagHome, lagWorld = GetNetStats()
+	return format("%.1f | %d | %d", GetFramerate(), down, lagWorld)
 end
 
 --[[----------------------------
@@ -58,21 +59,21 @@ text:SetFont(font, textSize)
 local update = function(self, event, ...)
 
 	local textString, r, g, b, a = textValues(self, event, ...)
-	
+
 	text:SetText(textString)
-	
-	if r and g and b and a then 
+
+	if r and g and b and a then
 		text:SetTextColor(r, g, b, a)
 	else
 		text:SetTextColor(1,1,1,1)
 	end
-	
+
 	self:SetAllPoints(text)
 end
 
 local heartbeat = function(self, elapsed)
 	self.timeElapsed = self.timeElapsed + elapsed
-	
+
 	if self.timeElapsed >= updateFrequency then
 		update(self, "OnUpdate")
 		self.timeElapsed = 0

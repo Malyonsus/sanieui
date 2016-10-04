@@ -15,7 +15,7 @@ MinimapWrapper:SetFrameStrata("BACKGROUND")
 MinimapWrapper.texture = MinimapWrapper:CreateTexture()
 MinimapWrapper.texture:SetPoint("TOPLEFT", "Minimap", "TOPLEFT", -1, 1)
 MinimapWrapper.texture:SetPoint("BOTTOMRIGHT", "Minimap", "BOTTOMRIGHT", 1, -1)
-MinimapWrapper.texture:SetTexture(r,g,b)
+MinimapWrapper.texture:SetColorTexture(r,g,b)
 
 MinimapNorthTag:Hide()
 MinimapZoneText:Hide()

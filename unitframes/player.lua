@@ -76,26 +76,26 @@ local function createSpecialPowerBar(frame)
 	--local bgTex = sBar:CreateTexture(nil, "BACKGROUND")
 	--bgTex:SetTexture(texture)
 	--bgTex:SetAllPoints(sBar)
-	frame.HolyPower = sBar
+	frame.AltPowerBar = sBar
 	--frame.HolyPower.bg = bgTex
-	
-	local singlesegmentwidth = (width - ((2 * backdropmargin) + ((MAX_HOLY_POWER - 1) * spgap))) / MAX_HOLY_POWER
-	
-	for i = 1, MAX_HOLY_POWER do
-		sBar[i] = sBar:CreateTexture(nil, "OVERLAY")
-		sBar[i]:SetSize(singlesegmentwidth, spheight)
-		sBar[i]:SetTexture(texture)
-		sBar[i]:SetVertexColor(1, 0, 0)
-		
-		if i == 1 then
-			sBar[i]:SetPoint("TOPLEFT", sBar, "TOPLEFT", 0, 0)
-		else
-			sBar[i]:SetPoint("TOPLEFT", sBar[i - 1], "TOPRIGHT", spgap, 0)
-		end
-	end
+
+	-- local singlesegmentwidth = (width - ((2 * backdropmargin) + ((MAX_HOLY_POWER - 1) * spgap))) / MAX_HOLY_POWER
+	--
+	-- for i = 1, MAX_HOLY_POWER do
+	-- 	sBar[i] = sBar:CreateTexture(nil, "OVERLAY")
+	-- 	sBar[i]:SetSize(singlesegmentwidth, spheight)
+	-- 	sBar[i]:SetTexture(texture)
+	-- 	sBar[i]:SetVertexColor(1, 0, 0)
+	--
+	-- 	if i == 1 then
+	-- 		sBar[i]:SetPoint("TOPLEFT", sBar, "TOPLEFT", 0, 0)
+	-- 	else
+	-- 		sBar[i]:SetPoint("TOPLEFT", sBar[i - 1], "TOPRIGHT", spgap, 0)
+	-- 	end
+	-- end
 
 end
-		
+
 
 local function setNameString(f)
 	local tag = "[name]"
@@ -103,7 +103,7 @@ local function setNameString(f)
 	name:SetPoint("BOTTOMRIGHT", f.Health, "TOPRIGHT", 0, 4)
 	name:SetJustifyH("RIGHT")
 	f:Tag(name, tag)
-	
+
 	local leftTag = "[smartlevel] [race] [smartclass]"
 	local leftName = uf.GetFontString(f, SanieUI.font, 10, nil)
 	leftName:SetPoint("BOTTOMLEFT", f.Health, "TOPLEFT", 0, 4)
@@ -114,13 +114,13 @@ end
 local function setHpStrings(f)
 	local leftHpTag = "[curhp]/[maxhp]"
 	local rightHpTag = "[perhp]%"
-	
+
 	local leftHp = uf.GetFontString(f.Health, SanieUI.font, 10, nil)
 	leftHp:SetPoint("LEFT", f.Health, "LEFT", 0, 0)
 	leftHp:SetJustifyH("LEFT")
 	leftHp.frequentUpdates = 0.1
 	f:Tag(leftHp, leftHpTag)
-	
+
 	local rightHp = uf.GetFontString(f.Health, SanieUI.font, 10, nil)
 	rightHp:SetPoint("RIGHT", f.Health, "RIGHT", 0, 0)
 	rightHp:SetJustifyH("RIGHT")
@@ -199,5 +199,3 @@ end
 oUF:RegisterStyle("Player", CreatePlayerStyle)
 oUF:SetActiveStyle("Player")
 oUF:Spawn("player", "oUF_Sanie_PlayerFrame")
-	
-	
