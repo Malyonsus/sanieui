@@ -20,7 +20,7 @@ Datatext functions
 -- This function returns the text value and r, g, b, a. If any of r,g,b,a are nil, will use solid white.
 local textValues = function(frame, event, ...)
 	local down, up, lagHome, lagWorld = GetNetStats()
-	return format("%.1f | %d | %d", GetFramerate(), down, lagWorld)
+	return format("%.1f | %.2fkbps | %dms", GetFramerate(), down, lagWorld)
 end
 
 --[[----------------------------
