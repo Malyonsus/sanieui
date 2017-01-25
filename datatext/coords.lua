@@ -30,10 +30,19 @@ Datatext functions
 -- You can also always use the |cAARRGGBBText|r format inline, too
 local textValues = function(frame, event, ...)
 	local heading = GetPlayerFacing()
+
+	if heading == nil then
+		heading = 0
+	end
+
 	-- Player facing starts at 0 facing north and increases counter-clockwise by radians.
 	-- This is the unitcircle minus .5pi radians.
 	local x, y = GetPlayerMapPosition("player")
-	
+
+	if x == nil or y == nil then
+		x, y = 0,0
+	end
+
 	heading = heading + (0.5 * math.pi)
 	-- now heading is an angle on the unit circle, and I can rely on
 	-- normal unit circle calculations for facing.
@@ -42,9 +51,9 @@ local textValues = function(frame, event, ...)
 	-- the sine negation is important because positive y is south, but heading was calculated as though positive y is north.
 	local xColorCode = lib.colorToTextCode(facingColorCrossfade(eastness))
 	local yColorCode = lib.colorToTextCode(facingColorCrossfade(southness))
-	
+
 	local textString = format("%s%.2f|r, %s%.2f|r", xColorCode, x * 100, yColorCode, y * 100)
-	
+
 	return textString
 end
 
@@ -84,21 +93,21 @@ text:SetFont(font, textSize)
 local update = function(self, event, ...)
 
 	local textString, r, g, b, a = textValues(self, event, ...)
-	
+
 	text:SetText(textString)
-	
-	if r and g and b and a then 
+
+	if r and g and b and a then
 		text:SetTextColor(r, g, b, a)
 	else
 		text:SetTextColor(1,1,1,1)
 	end
-	
+
 	self:SetAllPoints(text)
 end
 
 local heartbeat = function(self, elapsed)
 	self.timeElapsed = self.timeElapsed + elapsed
-	
+
 	if self.timeElapsed >= updateFrequency then
 		update(self, "OnUpdate")
 		self.timeElapsed = 0
