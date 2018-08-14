@@ -29,15 +29,16 @@ Datatext functions
 -- This function returns the text value and r, g, b, a. If any of r,g,b,a are nil, will use solid white.
 -- You can also always use the |cAARRGGBBText|r format inline, too
 local textValues = function(frame, event, ...)
+
+	-- Player facing starts at 0 facing north and increases counter-clockwise by radians.
+	-- This is the unitcircle minus .5pi radians.
 	local heading = GetPlayerFacing()
 
 	if heading == nil then
 		heading = 0
 	end
 
-	-- Player facing starts at 0 facing north and increases counter-clockwise by radians.
-	-- This is the unitcircle minus .5pi radians.
-	local x, y = GetPlayerMapPosition("player")
+	local x, y = C_Map.GetPlayerMapPosition(C_Map.GetBestMapForUnit("player"), "player")
 
 	if x == nil or y == nil then
 		x, y = 0,0
