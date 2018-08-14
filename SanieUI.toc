@@ -1,8 +1,8 @@
-## Interface: 60100
+## Interface: 80000
 ## Author: Sanie
 ## Title: SanieUI
-## Version: 6.1-blackhand
-## Notes: A 6.1 Layout compilation
+## Version: 8.0-sylvanas
+## Notes: A 8.0 Layout compilation
 ## RequiredDeps: oUF
 
 config.lua
@@ -17,7 +17,7 @@ unitframes\player.lua
 unitframes\target.lua
 unitframes\pet.lua
 unitframes\focus.lua
-unitframes\tot.lua 
+unitframes\tot.lua
 
 castbars\init.lua
 
