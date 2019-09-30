@@ -38,7 +38,17 @@ local textValues = function(frame, event, ...)
 		heading = 0
 	end
 
-	local x, y = C_Map.GetPlayerMapPosition(C_Map.GetBestMapForUnit("player"), "player")
+	local map = C_Map.GetBestMapForUnit("player")
+	if map == nil then
+		return ""
+	end
+
+	local loc = C_Map.GetPlayerMapPosition(map, "player")
+	if loc == nill then
+		return ""
+	end
+	
+	local x, y = loc.x, loc.y
 
 	if x == nil or y == nil then
 		x, y = 0,0
