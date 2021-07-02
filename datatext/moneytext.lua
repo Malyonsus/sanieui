@@ -2,7 +2,8 @@ local lib = SanieUI.lib
 
 local textFrame = CreateFrame("Frame", "MoneyTextFrame", UIParent)
 local text = textFrame:CreateFontString("MoneyText", "OVERLAY")
-text:SetFont("Fonts\\ARIALN.TTF", 10)
+-- text:SetFont("Fonts\\ARIALN.TTF", 10)
+text:SetFont(SanieUI.font, 12)
 text:SetShadowOffset(1,-1)
 text:SetShadowColor(0,0,0)
 
