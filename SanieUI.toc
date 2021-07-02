@@ -1,8 +1,8 @@
-## Interface: 90500
+## Interface: 91000
 ## Author: Sanie
 ## Title: SanieUI
-## Version: 9.0-bolvar
-## Notes: A 9.0 Layout compilation
+## Version: 9.1-calia
+## Notes: A 9.1 Layout compilation
 ## RequiredDeps: oUF
 
 config.lua
