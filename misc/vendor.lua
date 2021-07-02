@@ -48,15 +48,17 @@ end
 local autoRepair = function(frame, event, ...)
 	if(isDebug) then print("Autorepair called") end
 	if(CanMerchantRepair()) then
+		local guilded = IsInGuild()
+
 		local cost, doable = GetRepairAllCost()
 		if(cost > 0 and doable) then
-			RepairAllItems(1)
+			RepairAllItems(guilded)
 			print("Repaired all items at a cost of", lib.colorMoney(cost))
 		elseif(cost > 0 and not doable) then
 			print("Insufficient funds to repair at cost of", lib.colorMoney(cost))
 		end
 	end
-end	
+end
 
 if(SanieUI.sellgreys) then
 	mFrame:RegisterEvent("MERCHANT_SHOW")
