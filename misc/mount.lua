@@ -124,7 +124,7 @@ local getMountType = function()
 	-- not flyable, but returns 1 nevertheless.
 	local zone = GetZoneText()
 	local subzone = GetSubZoneText()
-	if(zone == "Wintergrasp" and not GetWintergraspWaitTime()) then
+	if zone == "Wintergrasp" then
 		-- Special wintergrasp case
 		return "running"
 	end
