@@ -44,7 +44,7 @@ local textValues = function(frame, event, ...)
 	end
 
 	local loc = C_Map.GetPlayerMapPosition(map, "player")
-	if loc == nill then
+	if loc == nil then
 		return ""
 	end
 	
