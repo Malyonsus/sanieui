@@ -1,8 +1,8 @@
-## Interface: 80000
+## Interface: 90500
 ## Author: Sanie
 ## Title: SanieUI
-## Version: 8.0-sylvanas
-## Notes: A 8.0 Layout compilation
+## Version: 9.0-bolvar
+## Notes: A 9.0 Layout compilation
 ## RequiredDeps: oUF
 
 config.lua
@@ -30,6 +30,7 @@ datatext\bagspace.lua
 datatext\coords.lua
 datatext\durability.lua
 datatext\stattext.lua
+datatext\xprep.lua
 
 misc\vendor.lua
 misc\mount.lua
