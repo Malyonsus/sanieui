@@ -47,7 +47,7 @@ SanieUI["unitframes"] = {
 		["spweight"] = 3, -- weight of holypower/soulshards/eclipse
 		["spgap"] = 3, -- pixel gap of individual bars
 		["scale"] = 1,
-		["xpos"] = -212, -- Relative to the bottom center of the screen
+		["xpos"] = -335, -- Relative to the bottom center of the screen
 		["ypos"] = 100, -- Relative to the bottom center of the screen
 	},
 	["pet"] = {
@@ -56,7 +56,7 @@ SanieUI["unitframes"] = {
 		["hpweight"] = 7,
 		["ppweight"] = 2,
 		["scale"] = 1,
-		["xpos"] = -242,
+		["xpos"] = -335,
 		["ypos"] = 23,
 	},
 	["target"] = {
@@ -65,7 +65,7 @@ SanieUI["unitframes"] = {
 		["hpweight"] = 7,
 		["ppweight"] = 2,
 		["scale"] = 1,
-		["xpos"] = 212,
+		["xpos"] = 335,
 		["ypos"] = 100,
 	},
 	["targettarget"] = {
